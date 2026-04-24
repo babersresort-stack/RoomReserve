@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Notifications;
+
+use App\Models\Booking;
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+
+class BookingReminderNotification extends Notification
+{
+    use Queueable;
+
+    public function __construct(private readonly Booking $booking)
+    {
+    }
+
+    public function via(object $notifiable): array
+    {
+        return ['mail'];
+    }
+
+    public function toMail(object $notifiable): MailMessage
+    {
+        return (new MailMessage)
+            ->subject('RoomReserve booking reminder')
+            ->greeting('Hello '.$notifiable->name.',')
+            ->line('This is a reminder that your check-in is in about 24 hours.')
+            ->line('Reference: '.$this->booking->reference)
+            ->line('Room: '.$this->booking->room->name.' ('.$this->booking->room->code.')')
+            ->line('Check-in: '.$this->booking->check_in_at->format('M j, Y g:i A'))
+            ->line('Check-out: '.$this->booking->check_out_at->format('M j, Y g:i A'))
+            ->line('Total bill: PHP '.number_format($this->booking->total_bill, 2))
+            ->action('View my booking', route('bookings.show', $this->booking));
+    }
+}
