@@ -7,7 +7,8 @@
         <title>{{ $title ?? config('app.name', 'RoomReserve') }}</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|poppins:500,600,700&display=swap" rel="stylesheet" />
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('build/assets/app-WRVdiyKA.css') }}">
+        <script defer src="{{ asset('build/assets/app-Clp7t88n.js') }}"></script>
     </head>
     <body>
         <header x-data="{ menuOpen: false }" class="topbar topbar-surface">
