@@ -1,0 +1,29 @@
+{
+  "resources/asset/gate.jpg": {
+    "file": "assets/gate-CRb8RmXn.jpg",
+    "src": "resources/asset/gate.jpg"
+  },
+  "resources/asset/gate2.jpg": {
+    "file": "assets/gate2-cVq0hteJ.jpg",
+    "src": "resources/asset/gate2.jpg"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-WRVdiyKA.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "assets": [
+      "assets/gate2-cVq0hteJ.jpg",
+      "assets/gate-CRb8RmXn.jpg"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Clp7t88n.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
