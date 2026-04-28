@@ -4,7 +4,7 @@
     <section class="hero">
         <div class="hero-banner panel stack p-8 text-white">
             <div class="row">
-                <span class="hero-logo-wrap"><img class="hero-logo" src="{{ Vite::asset('resources/asset/logo.jpg') }}" alt="RoomReserve logo"></span>
+                <span class="hero-logo-wrap"><img class="hero-logo" src="/assets/logo.jpg" alt="RoomReserve logo"></span>
                 <span class="pill border-white/20 bg-white/15 text-white">Guest registration</span>
             </div>
             <div class="space-y-4 max-w-xl">

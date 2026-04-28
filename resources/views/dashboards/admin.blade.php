@@ -9,7 +9,8 @@
                 Manage room inventory, inspect future bookings, and review guest feedback from a single control surface.
             </p>
             <div class="card stack">
-                <img src="{{ Vite::asset('resources/asset/room-ocean.svg') }}" alt="Hotel room preview">
+                <!-- Room preview SVG - placeholder -->
+                <div class="placeholder-image" style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">Room Preview</div>
                 <p class="muted">Photo-led room cards help staff identify inventory faster.</p>
             </div>
             <div class="stack pt-2">

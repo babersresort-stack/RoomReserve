@@ -13,7 +13,7 @@
         <header x-data="{ menuOpen: false }" class="topbar topbar-surface">
             <div class="shell flex w-full items-center justify-between gap-4">
                 <a href="{{ auth()->check() && auth()->user()->role === 'admin' ? route('admin.dashboard') : route('home') }}" class="brand">
-                    <img class="brand-logo" src="{{ Vite::asset('resources/asset/logo.jpg') }}" alt="RoomReserve logo">
+                    <img class="brand-logo" src="/assets/logo.jpg" alt="RoomReserve logo">
                     <span>
                         <strong>RoomReserve</strong>
                         Resort booking and room operations

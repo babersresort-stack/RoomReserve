@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
                 'base_rate' => 1000,
                 'status' => 'available',
                 'description' => 'Shared group room. Pricing is 1,000 per head for overnight stay.',
-                'image_path' => 'resources/asset/double3.jpg',
+                'image_path' => 'assets/double3.jpg',
                 'amenities' => ['Wi-Fi', 'Air conditioning', 'Group sleeping area'],
             ],
         ];

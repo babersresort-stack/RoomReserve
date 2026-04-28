@@ -4,17 +4,17 @@
     @php
         $resortSlides = [
             [
-                'src' => Vite::asset('resources/asset/gate.jpg'),
+                'src' => '/assets/gate.jpg',
                 'title' => 'Entrance lane',
                 'caption' => 'A calm entry path leading guests toward reception and the room wings.',
             ],
             [
-                'src' => Vite::asset('resources/asset/double3.jpg'),
+                'src' => '/assets/double3.jpg',
                 'title' => 'Shared ambiance area',
                 'caption' => 'An open social atmosphere designed for groups and shared stays.',
             ],
             [
-                'src' => Vite::asset('resources/asset/single3.jpg'),
+                'src' => '/assets/single3.jpg',
                 'title' => 'Quiet room atmosphere',
                 'caption' => 'A private, restful setup for guests looking for a quiet overnight retreat.',
             ],
@@ -49,7 +49,7 @@
         >
             <div class="row">
                 <span class="hero-logo-wrap">
-                    <img class="hero-logo" src="{{ Vite::asset('resources/asset/logo.jpg') }}" alt="RoomReserve logo">
+                    <img class="hero-logo" src="/assets/logo.jpg" alt="RoomReserve logo">
                 </span>
                 <span class="pill border-white/20 bg-white/15 text-white">Modern hotel booking</span>
             </div>

@@ -48,10 +48,6 @@ class Room extends Model
             return null;
         }
 
-        if (str_starts_with($this->image_path, 'resources/')) {
-            return Vite::asset($this->image_path);
-        }
-
         if (str_starts_with($this->image_path, 'http://') || str_starts_with($this->image_path, 'https://')) {
             return $this->image_path;
         }

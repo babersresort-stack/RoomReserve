@@ -4,7 +4,7 @@
     <section class="auth-shell">
         <div class="panel auth-hero auth-gate stack p-8 md:p-10 text-white">
             <div class="row">
-                <span class="hero-logo-wrap"><img class="hero-logo" src="{{ Vite::asset('resources/asset/logo.jpg') }}" alt="RoomReserve logo"></span>
+                <span class="hero-logo-wrap"><img class="hero-logo" src="/assets/logo.jpg" alt="RoomReserve logo"></span>
             </div>
             <div class="auth-gate-copy">
                 <h1>Welcome back.</h1>
