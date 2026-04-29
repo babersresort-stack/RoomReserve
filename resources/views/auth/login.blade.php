@@ -24,7 +24,7 @@
                 <label for="password">Password</label>
                 <div class="row" style="align-items:stretch;">
                     <input id="password" name="password" type="password" required>
-                    <button class="button" type="button" id="password_toggle">Peek</button>
+                    <button class="button" type="button" id="password_toggle" style="font-size: 1.2rem; width: 44px; padding: 0;">👁️</button>
                 </div>
             </div>
             <div class="row" style="justify-content: space-between;">
@@ -42,10 +42,11 @@
         const loginPassword = document.getElementById('password');
         const loginPasswordToggle = document.getElementById('password_toggle');
 
-        loginPasswordToggle.addEventListener('click', function () {
+        loginPasswordToggle.addEventListener('click', function (e) {
+            e.preventDefault();
             const shouldShow = loginPassword.type === 'password';
             loginPassword.type = shouldShow ? 'text' : 'password';
-            loginPasswordToggle.textContent = shouldShow ? 'Hide' : 'Peek';
+            loginPasswordToggle.style.opacity = shouldShow ? '1' : '0.5';
         });
     </script>
 @endsection

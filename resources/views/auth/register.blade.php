@@ -34,14 +34,14 @@
                 <label for="password">Password</label>
                 <div class="row" style="align-items:stretch;">
                     <input id="password" name="password" type="password" required>
-                    <button class="button" type="button" id="password_toggle">Peek</button>
+                    <button class="button" type="button" id="password_toggle" style="font-size: 1.2rem; width: 44px; padding: 0;">👁️</button>
                 </div>
             </div>
             <div>
                 <label for="password_confirmation">Confirm password</label>
                 <div class="row" style="align-items:stretch;">
                     <input id="password_confirmation" name="password_confirmation" type="password" required>
-                    <button class="button" type="button" id="password_confirmation_toggle">Peek</button>
+                    <button class="button" type="button" id="password_confirmation_toggle" style="font-size: 1.2rem; width: 44px; padding: 0;">👁️</button>
                 </div>
             </div>
             <button class="button primary" type="submit">Create account</button>
@@ -53,10 +53,11 @@
             const input = document.getElementById(inputId);
             const button = document.getElementById(buttonId);
 
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
                 const shouldShow = input.type === 'password';
                 input.type = shouldShow ? 'text' : 'password';
-                button.textContent = shouldShow ? 'Hide' : 'Peek';
+                button.style.opacity = shouldShow ? '1' : '0.5';
             });
         }
 
