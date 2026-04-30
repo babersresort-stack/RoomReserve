@@ -157,6 +157,27 @@ class RoomController extends Controller
         ];
     }
 
+    public function checkDateConflict(Request $request, Room $room): array
+    {
+        $request->validate([
+            'check_in_at' => ['required', 'date'],
+            'check_out_at' => ['required', 'date'],
+        ]);
+
+        $checkIn = \Carbon\Carbon::parse($request->input('check_in_at'));
+        $checkOut = \Carbon\Carbon::parse($request->input('check_out_at'));
+
+        $hasConflict = Booking::hasConflict($room->id, $checkIn, $checkOut);
+
+        return [
+            'room_id' => $room->id,
+            'has_conflict' => $hasConflict,
+            'check_in_at' => $checkIn->format('Y-m-d H:i'),
+            'check_out_at' => $checkOut->format('Y-m-d H:i'),
+            'message' => $hasConflict ? 'This room is already booked for the selected dates.' : 'Room is available for these dates.',
+        ];
+    }
+
     private function validatedRoom(Request $request, ?int $ignoreRoomId = null): array
     {
         return $request->validate([

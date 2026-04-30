@@ -9,30 +9,7 @@
             </div>
         </div>
 
-        <form class="panel stack" method="GET" action="{{ route('rooms.index') }}">
-            <div class="grid cols-4">
-                <div>
-                    <label for="room_id">Room ID</label>
-                    <input id="room_id" name="room_id" type="number" min="1" value="{{ $filters['room_id'] ?? '' }}" placeholder="Any">
-                </div>
-                <div>
-                    <label for="check_in_at">Check-in</label>
-                    <input id="check_in_at" name="check_in_at" type="datetime-local" value="{{ $filters['check_in_at'] ?? '' }}">
-                </div>
-                <div>
-                    <label for="check_out_at">Check-out</label>
-                    <input id="check_out_at" name="check_out_at" type="datetime-local" value="{{ $filters['check_out_at'] ?? '' }}">
-                </div>
-                <div>
-                    <label for="guests">Guests</label>
-                    <input id="guests" name="guests" type="number" min="1" value="{{ $filters['guests'] ?? '' }}" placeholder="Any">
-                </div>
-            </div>
-            <div class="row">
-                <button class="button primary" type="submit">Check availability</button>
-                <a class="button" href="{{ route('rooms.index') }}">Reset filters</a>
-            </div>
-        </form>
+
 
         <div class="row">
             <span class="pill">Status legend</span>

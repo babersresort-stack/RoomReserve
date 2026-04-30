@@ -97,34 +97,7 @@
                 </p>
             </div>
 
-            <div class="booking-strip panel bg-white/96 text-slate-900 shadow-none">
-                <form class="grid gap-4 lg:grid-cols-[1.2fr,1fr,1fr,0.8fr,auto]" method="GET" action="{{ route('rooms.index') }}">
-                    <div>
-                        <label for="room_id">Room</label>
-                        <select id="room_id" name="room_id">
-                            <option value="">Any room</option>
-                            @foreach ($featuredRooms as $room)
-                                <option value="{{ $room->id }}">{{ $room->name }} - {{ $room->code }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div>
-                        <label for="check_in_at">Check-in</label>
-                        <input id="check_in_at" name="check_in_at" type="datetime-local">
-                    </div>
-                    <div>
-                        <label for="check_out_at">Check-out</label>
-                        <input id="check_out_at" name="check_out_at" type="datetime-local">
-                    </div>
-                    <div>
-                        <label for="guests">Guests</label>
-                        <input id="guests" name="guests" type="number" min="1" value="1">
-                    </div>
-                    <div class="lg:self-end">
-                        <button class="button primary booking-cta w-full" type="submit">Check availability</button>
-                    </div>
-                </form>
-            </div>
+
 
             <div class="grid gap-4 md:grid-cols-4">
                 <div class="hero-metric">

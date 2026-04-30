@@ -57,6 +57,10 @@
                     </div>
                 </div>
 
+                <div id="availability-alert" style="display:none;padding:0.75rem;border-radius:0.75rem;border:1px solid rgba(248,113,113,0.35);background:rgba(254,226,226,0.92);color:#991b1b;font-size:0.875rem;">
+                    <strong>⚠️ Unavailable</strong> — This room is already booked for the selected dates. Please choose different dates.
+                </div>
+
                 <div>
                     <label for="check_in_at">Check-in</label>
                     <input id="check_in_at" name="check_in_at" type="datetime-local" value="{{ old('check_in_at') }}" required>
@@ -79,7 +83,7 @@
                     <label for="special_requests">Special requests</label>
                     <textarea id="special_requests" name="special_requests">{{ old('special_requests') }}</textarea>
                 </div>
-                <button class="button primary" type="submit">Confirm reservation</button>
+                <button id="submit-btn" class="button primary" type="submit">Confirm reservation</button>
             </form>
         @else
             <div class="panel stack">
@@ -111,9 +115,12 @@
             const checkOutInput = document.getElementById('check_out_at');
             const guestsInput = document.getElementById('guests');
             const totalBillPreview = document.getElementById('total_bill_preview');
+            const availabilityAlert = document.getElementById('availability-alert');
+            const submitBtn = document.getElementById('submit-btn');
             const reservedDates = @json($reservedDates);
             const nightlyRate = Number({{ (float) $room->base_rate }});
             const billsPerGuest = {{ $room->capacity >= 10 ? 'true' : 'false' }};
+            const checkConflictUrl = '{{ route("rooms.check-conflict", $room) }}';
 
             function datePart(value) {
                 return value ? value.slice(0, 10) : '';
@@ -152,14 +159,56 @@
                 totalBillPreview.textContent = `PHP ${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             }
 
+            async function checkAvailability() {
+                if (!checkInInput.value || !checkOutInput.value) {
+                    availabilityAlert.style.display = 'none';
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    return;
+                }
+
+                try {
+                    const response = await fetch(checkConflictUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                        },
+                        body: JSON.stringify({
+                            check_in_at: checkInInput.value,
+                            check_out_at: checkOutInput.value,
+                        }),
+                    });
+
+                    const data = await response.json();
+
+                    if (data.has_conflict) {
+                        availabilityAlert.style.display = 'block';
+                        submitBtn.disabled = true;
+                        submitBtn.style.opacity = '0.5';
+                        submitBtn.style.cursor = 'not-allowed';
+                    } else {
+                        availabilityAlert.style.display = 'none';
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '1';
+                        submitBtn.style.cursor = 'pointer';
+                    }
+                } catch (error) {
+                    console.error('Error checking availability:', error);
+                }
+            }
+
             checkInInput.addEventListener('input', function () {
                 highlightReservedDate(checkInInput);
                 updateTotalBill();
+                checkAvailability();
             });
 
             checkOutInput.addEventListener('input', function () {
                 highlightReservedDate(checkOutInput);
                 updateTotalBill();
+                checkAvailability();
             });
 
             guestsInput.addEventListener('input', updateTotalBill);

@@ -39,6 +39,7 @@ Route::middleware(['auth', 'role:guest'])->group(function () {
     Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
     Route::get('/rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
     Route::get('/availability/{room}', [RoomController::class, 'availability'])->name('rooms.availability');
+    Route::post('/rooms/{room}/check-conflict', [RoomController::class, 'checkDateConflict'])->name('rooms.check-conflict');
     Route::post('/rooms/{room}/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
     Route::get('/bookings/{booking}', [BookingController::class, 'show'])->name('bookings.show');
